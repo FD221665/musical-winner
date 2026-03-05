@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contacto — EO4MRV</title>
+  <meta name="description" content="Contacto del proyecto EO4MRV." />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script defer src="assets/js/include.js"></script>
+  <script defer src="assets/js/main.js"></script>
+  <script defer src="assets/js/form.js"></script>
+</head>
+<body>
+  <div id="headerMount"></div>
+
+  <main>
+    <section class="pagehead">
+      <div class="container">
+        <div class="breadcrumb">Inicio / Contacto</div>
+        <h1>Contacto</h1>
+        <p class="muted">Envíanos un mensaje. Responderemos lo antes posible.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <form id="contactForm" class="form" novalidate>
+          <div class="field">
+            <label for="name">Nombre *</label>
+            <input id="name" name="name" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email *</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="org">Organización</label>
+            <input id="org" name="org" autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label for="message">Mensaje *</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+
+          <button class="btn" type="submit">Enviar</button>
+          <div id="formStatus" role="status" aria-live="polite"></div>
+        </form>
+
+        <div class="card" style="margin-top:16px">
+          <h3>Integración de envío real</h3>
+          <p class="muted">
+            Este sitio es estático. Para envío real usa Formspree, Netlify Forms, o un endpoint propio.
+            El JS ya valida el formulario y deja listo el punto de integración.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footerMount"></div>
+</body>
+</html>

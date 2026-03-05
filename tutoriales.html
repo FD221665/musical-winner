@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tutoriales — EO4MRV</title>
+  <meta name="description" content="Tutoriales paso a paso para uso de datos EO y MRV." />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script defer src="assets/js/include.js"></script>
+  <script defer src="assets/js/main.js"></script>
+</head>
+<body>
+  <div id="headerMount"></div>
+
+  <main>
+    <section class="pagehead">
+      <div class="container">
+        <div class="breadcrumb">Inicio / Tutoriales</div>
+        <h1>Tutoriales</h1>
+        <p class="muted">Aprendizaje por niveles con flujos de trabajo reproducibles.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div id="tutorialsGrid" class="grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footerMount"></div>
+
+  <script type="module">
+    import { tutorials } from "./assets/js/data.js";
+    const mount = document.getElementById("tutorialsGrid");
+    mount.innerHTML = tutorials.map(t => `
+      <article class="card">
+        <div class="badge">${t.level} · ${t.time}</div>
+        <h3 style="margin-top:10px">${t.title}</h3>
+        <p class="muted">${t.desc}</p>
+        <a class="btn btn-outline btn-sm" href="#">Ver tutorial</a>
+      </article>
+    `).join("");
+  </script>
+</body>
+</html>

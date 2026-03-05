@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Noticias — EO4MRV</title>
+  <meta name="description" content="Noticias y avances del proyecto EO4MRV." />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script defer src="assets/js/include.js"></script>
+  <script defer src="assets/js/main.js"></script>
+</head>
+<body>
+  <div id="headerMount"></div>
+
+  <main>
+    <section class="pagehead">
+      <div class="container">
+        <div class="breadcrumb">Inicio / Noticias</div>
+        <h1>Noticias</h1>
+        <p class="muted">Avances, eventos y publicaciones del proyecto.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div id="newsAll" class="list"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footerMount"></div>
+
+  <script type="module">
+    import { news } from "./assets/js/data.js";
+    const mount = document.getElementById("newsAll");
+    mount.innerHTML = news.map(n => `
+      <article class="card item">
+        <div class="left">
+          <div class="badge">${new Date(n.date).toLocaleDateString("es-ES")}</div>
+          <h3 style="margin:10px 0 6px">${n.title}</h3>
+          <p class="muted" style="margin:0">${n.excerpt}</p>
+        </div>
+        <div class="right">
+          <a class="btn btn-outline btn-sm" href="${n.link}">Leer</a>
+        </div>
+      </article>
+    `).join("");
+  </script>
+</body>
+</html>

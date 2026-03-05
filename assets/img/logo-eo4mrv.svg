@@ -1,0 +1,35 @@
+<!-- assets/img/logo-eo4mrv.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 240" role="img" aria-label="EO4MRV logo">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#1565C0"/>
+      <stop offset="1" stop-color="#2E7D32"/>
+    </linearGradient>
+    <filter id="s" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <!-- Mark -->
+  <g transform="translate(24,24)" filter="url(#s)">
+    <!-- Earth -->
+    <circle cx="92" cy="92" r="78" fill="url(#g1)"/>
+    <!-- Orbit -->
+    <ellipse cx="92" cy="92" rx="110" ry="62" fill="none" stroke="#1565C0" stroke-width="8" opacity="0.35"/>
+    <circle cx="190" cy="92" r="10" fill="#1565C0" opacity="0.9"/>
+
+    <!-- Leaf -->
+    <path d="M72 122c42-8 70-32 88-66-48 6-88 34-88 66z" fill="#E8F5E9" opacity="0.9"/>
+    <path d="M68 124c42-16 74-50 90-88" fill="none" stroke="#E8F5E9" stroke-width="6" stroke-linecap="round" opacity="0.9"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(250,70)">
+    <text x="0" y="0" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="64" font-weight="800" fill="#0B1B2B">
+      EO4MRV
+    </text>
+    <text x="2" y="42" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="18" font-weight="600" fill="#395166">
+      Ecosystem & Carbon Monitoring, Reporting and Verification through Earth Observation
+    </text>
+  </g>
+</svg>
