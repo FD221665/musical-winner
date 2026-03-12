@@ -24,23 +24,16 @@
     </nav>
   </div>
   <script>
-  const menuBtn = document.getElementById('menuBtn');
-  const navMenu = document.getElementById('navMenu');
+    // Toggle de menú para dispositivos móviles
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.getElementById('navMenu');
 
-  menuBtn.addEventListener('click', () => {
-    navMenu.classList.toggle('is-active');
-    const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
-    menuBtn.setAttribute('aria-expanded', !expanded);
-    menuBtn.innerHTML = expanded ? '☰' : '✕';
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!menuBtn.contains(e.target) && !navMenu.contains(e.target)) {
-      navMenu.classList.remove('is-active');
-      menuBtn.setAttribute('aria-expanded', 'false');
-      menuBtn.innerHTML = '☰';
-    }
-  });
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+      navToggle.setAttribute('aria-expanded', !expanded);
+      navMenu.classList.toggle('nav-menu--open');
+    });
+    
 </script>
 
 </header>
