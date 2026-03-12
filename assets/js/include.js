@@ -13,5 +13,13 @@ async function includePartial(selector, url) {
 async function loadLayout() {
   await includePartial("#headerMount", "partials/header.html");
   await includePartial("#footerMount", "partials/footer.html");
+
+  // after the header has been injected we can initialize nav toggling
+  if (typeof navToggle === 'function') {
+    navToggle();
+  }
+  if (typeof setActiveNav === 'function') {
+    setActiveNav();
+  }
 }
 document.addEventListener("DOMContentLoaded", loadLayout);
