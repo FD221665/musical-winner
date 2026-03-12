@@ -1,127 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EO4MRV - Inicio</title>
-  <style>
-    :root {
-      --primary: #1a5f7a;
-      --secondary: #2d8bba;
-      --accent: #57cc99;
-      --dark: #222222;
-      --light: #f8f9fa;
-      --white: #ffffff;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--light); }
-
-    .site-header {
-      background-color: var(--white);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      height: 80px;
-      display: flex;
-      align-items: center;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .header-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-    }
-
-    .brand-logo {
-      height: 50px;
-      display: block;
-    }
-
-    .nav-toggle {
-      display: block;
-      background: none;
-      border: none;
-      font-size: 2rem;
-      cursor: pointer;
-      color: var(--primary);
-      padding: 5px;
-      line-height: 1;
-    }
-
-    .nav-menu {
-      display: none;
-      list-style: none;
-      position: absolute;
-      top: 60px;
-      right: 0;
-      background-color: var(--white);
-      min-width: 250px;
-      flex-direction: column;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-      border-radius: 8px;
-      padding: 15px 0;
-      overflow: hidden;
-    }
-
-    .nav-menu.is-active {
-      display: flex;
-    }
-
-    .nav-menu li {
-      width: 100%;
-    }
-
-    .nav-menu a {
-      display: block;
-      text-decoration: none;
-      color: var(--dark);
-      padding: 12px 25px;
-      font-weight: 500;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    .nav-menu a:hover {
-      background-color: #f0f7f9;
-      color: var(--secondary);
-    }
-
-    .nav-menu a.btn {
-      background-color: var(--primary);
-      color: var(--white);
-      margin: 10px 20px;
-      text-align: center;
-      border-radius: 5px;
-      padding: 10px;
-    }
-
-    .nav-menu a.btn:hover {
-      background-color: var(--secondary);
-    }
-
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      border: 0;
-    }
-  </style>
-</head>
-<body>
-
+<!-- partials/header.html -->
 <header class="site-header" role="banner">
   <div class="container header-inner">
     <a class="brand" href="index.html" aria-label="Ir a inicio">
@@ -129,7 +6,7 @@
     </a>
 
     <nav class="nav" aria-label="Navegación principal">
-      <button class="nav-toggle" id="menuBtn" type="button" aria-expanded="false" aria-controls="navMenu">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu">
         <span class="sr-only">Abrir menú</span>
         ☰
       </button>
@@ -142,31 +19,21 @@
         <li><a href="storymaps.html">Story Maps</a></li>
         <li><a href="socios.html">Socios</a></li>
         <li><a href="noticias.html">Noticias</a></li>
-        <li><a href="contacto.html" class="btn">Contacto</a></li>
+        <li><a href="contacto.html" class="btn btn-sm">Contacto</a></li>
       </ul>
     </nav>
   </div>
-</header>
+  <script>
+    // Toggle de menú para dispositivos móviles
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.getElementById('navMenu');
 
-<script>
-  const menuBtn = document.getElementById('menuBtn');
-  const navMenu = document.getElementById('navMenu');
-
-  menuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isActive = navMenu.classList.toggle('is-active');
-    menuBtn.setAttribute('aria-expanded', isActive);
-    menuBtn.innerHTML = isActive ? '✕' : '☰';
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!navMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-      navMenu.classList.remove('is-active');
-      menuBtn.setAttribute('aria-expanded', 'false');
-      menuBtn.innerHTML = '☰';
-    }
-  });
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+      navToggle.setAttribute('aria-expanded', !expanded);
+      navMenu.classList.toggle('nav-menu--open');
+    });
+    
 </script>
 
-</body>
-</html>
+</header>
