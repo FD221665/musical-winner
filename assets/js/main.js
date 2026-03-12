@@ -26,6 +26,6 @@ function setYear() {
 
 document.addEventListener("DOMContentLoaded", () => {
   setYear();
-  navToggle();
+  // navToggle will be called after header is included (see include.js)
   setActiveNav();
 });
