@@ -58,6 +58,15 @@ El enfoque de diseño combina:
 - Buscador
 - CTA destacado: “Acceder a recursos”
 
+### Footer institucional (ajuste solicitado)
+- **Composición**: bloque horizontal con logo de la Unión Europea a la izquierda y texto institucional a la derecha.
+- **Texto visible**:
+  - “Este proyecto ha sido financiado con el apoyo de la Comisión Europea.”
+  - “Esta publicación refleja únicamente las opiniones del autor, y la Comisión no se hace responsable del uso que pueda hacerse de la información aquí difundida.”
+- **Importante**: **omitir la línea de copyright** (no mostrar `© 2025 eCOLAB 4.0`).
+- **Color de fondo**: azul institucional `#005F99` (mismo tono visual de referencia solicitado).
+- **Color de texto**: blanco `#FFFFFF`.
+
 ---
 
 ## 4) Diseño por página
@@ -72,6 +81,85 @@ El enfoque de diseño combina:
    - Botones CTA:
      - “Explorar recursos”
      - “Ver tutoriales”
+
+### Especificación visual: Hero con efecto 3D Parallax
+
+Para el hero principal se incorpora un efecto **3D parallax suave** usando la imagen espacial facilitada (planeta Tierra en tonos azules) como fondo principal.
+
+#### Requisitos de diseño
+- **Imagen base del hero**: usar la imagen proporcionada por el cliente.
+- **Tratamiento visual recomendado**:
+  - Overlay oscuro: `rgba(3, 10, 30, 0.35)` para mantener legibilidad del texto.
+  - Altura del hero: `min(78vh, 860px)`.
+  - Alineación de contenido: centrado vertical, texto alineado a la izquierda.
+- **Profundidad 3D**:
+  - Capa fondo (estrellas): desplazamiento lento.
+  - Capa planeta: desplazamiento medio.
+  - Capa contenido (título/CTA): desplazamiento mínimo.
+- **Accesibilidad y rendimiento**:
+  - Desactivar animación cuando el usuario tenga `prefers-reduced-motion: reduce`.
+  - Limitar intensidad de movimiento en móvil para evitar mareo y consumo excesivo de batería.
+
+#### Implementación recomendada en WordPress + Kadence
+1. Crear un **Row Layout** para el hero con clase: `eo4mrv-hero`.
+2. Establecer la imagen suministrada como fondo principal del bloque.
+3. Añadir clase al contenedor interno de texto: `eo4mrv-hero-content`.
+4. Aplicar CSS personalizado (Customizer > Additional CSS):
+
+```css
+.eo4mrv-hero {
+  position: relative;
+  min-height: min(78vh, 860px);
+  overflow: hidden;
+  background-position: center center;
+  background-size: cover;
+  transform-style: preserve-3d;
+}
+
+.eo4mrv-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 10, 30, 0.35);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.eo4mrv-hero-content {
+  position: relative;
+  z-index: 2;
+  transform: translateZ(24px);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eo4mrv-hero,
+  .eo4mrv-hero-content {
+    transform: none !important;
+    background-attachment: scroll !important;
+  }
+}
+```
+
+5. (Opcional) añadir JS ligero para parallax dinámico por scroll/mouse:
+
+```js
+const hero = document.querySelector('.eo4mrv-hero');
+const content = document.querySelector('.eo4mrv-hero-content');
+
+if (hero && content && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  window.addEventListener('scroll', () => {
+    const y = Math.min(window.scrollY * 0.2, 60);
+    hero.style.backgroundPosition = `center calc(50% + ${y}px)`;
+    content.style.transform = `translate3d(0, ${y * 0.15}px, 24px)`;
+  }, { passive: true });
+}
+```
+
+6. Aplicar versión móvil:
+   - Reducir altura a `56vh`.
+   - Mantener solo parallax por scroll (sin seguimiento de mouse).
+   - Priorizar legibilidad del texto y botones CTA.
 
 2. **Bloque de contexto rápido**
    - 3 columnas: problema, solución EO4MRV, impacto esperado.
